@@ -43,7 +43,7 @@ class AddNote extends Component {
             }}, function(){
                 this.props.addNote(this.state.newNote);
                 this.props.show(this.state.show);
-            });            
+            });     
         }
     }
 

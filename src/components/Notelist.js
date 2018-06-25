@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NoteItem from "./NoteItem";
+import Note from "./Note";
 
 class Notelist extends Component {
 
@@ -18,9 +19,11 @@ class Notelist extends Component {
     openNote(id) {    
         let { show } = this.state;
         this.setState({ show: !show });
-
         this.props.openNote(id);
+    }
 
+    autoSaveNote(e) {
+        this.props.autoSaveNote(e);
     }
 
     render() {
@@ -32,17 +35,19 @@ class Notelist extends Component {
                     <NoteItem key={note.id} note={note} openNote={this.openNote.bind(this)} />
                 );
             });
-        }
+        }   
+
 
 
         if(this.state.show){
-
             return (
                 <div className="note-page">
-                    <form>
-                        <input type="text" className="note-title" ref="noteTitle" placeholder="Untitled Note" defaultValue={this.props.noteTitle} />
-                        <textarea className="note-content" ref="noteContent" defaultValue={this.props.noteTitle}></textarea>
-                    </form>
+                    <Note   autoSaveNote={this.autoSaveNote.bind(this)} 
+                            noteId ={this.props.noteId} 
+                            noteTitle ={this.props.noteTitle} 
+                            noteContent={this.props.noteContent} 
+                            noteDate={this.props.noteDate} 
+                    />
                 </div>              
             );    
         } else {
