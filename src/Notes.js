@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Notelist from "./components/Notelist";
 import AddNote from "./components/AddNote";
-import uuid from "uuid";
 import "./css/reset.css";
 import "./css/style.css";
 
-
+const savednotes = localStorage.getItem("savednotes");
+let notes;
 
 class Notes extends Component {
 
@@ -13,44 +13,34 @@ class Notes extends Component {
     super(props);
 
     this.state = {
-        notes: [],
         thisNote: {},
         show: false
     }
   }
 
-  getStoredNotes(){
-    this.setState({
-      notes: [
-        {
-          id: uuid.v4(),
-          title: "Standard requirements for design quality",
-          date: "3 days ago"
-        },
-        {
-          id: uuid.v4(),
-          title: "JSON API paints my bikeshed!",
-          date: "6 days ago"
-        },
-        {
-          id: uuid.v4(),
-          title: "How to Spot a Sketchy Spiritual Guru",
-          date: "6 days ago"
-        }
-      ]
-    });
-  }
-
-
   componentWillMount() {
-      this.getStoredNotes();
+    if (savednotes == null) {
+        notes = [];
+    } else {
+        notes = JSON.parse(savednotes);
+    }
+    this.setState({ notes });
+}
 
+
+
+  handleAddNote(note) {
+    console.log(note);    
+    let notes = this.state.notes;
+    notes.push(note);
+    this.setState({notes:notes});
+    this.saveNotes();
   }
 
-  componenteDidMount(){
-      this.getStoredNotes();
+  saveNotes(){
+    let { notes } = this.state;
+    localStorage.setItem("savednotes", JSON.stringify(notes));                
   }
-
 
   showForm = () => {    
     let { show } = this.state;
@@ -86,15 +76,6 @@ class Notes extends Component {
         noteDate: note.date 
       }
     });
-  }
-
-
-
-  handleAddNote(note) {
-    console.log(note);    
-    let notes = this.state.notes;
-    notes.push(note);
-    this.setState({notes:notes});
   }
 
   render() {

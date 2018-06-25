@@ -15,11 +15,6 @@ class Notelist extends Component {
         this.props.showForm();
     }
 
-    // openNote(e) {
-    //     // this.props.openNote();
-    //     console.log('This should open the note');
-    // }
-
     openNote(id) {    
         let { show } = this.state;
         this.setState({ show: !show });

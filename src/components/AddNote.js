@@ -38,7 +38,8 @@ class AddNote extends Component {
             this.setState({newNote: {
                 id: uuid.v4(),
                 title: newNoteTitle,
-                note: this.refs.note.value
+                note: this.refs.note.value,
+                date: Date.now()
             }}, function(){
                 this.props.addNote(this.state.newNote);
                 this.props.show(this.state.show);
