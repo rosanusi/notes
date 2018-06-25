@@ -4,6 +4,7 @@ class NoteItem extends Component {
 
   openNote(id) {
     this.props.openNote(id);
+    
     // console.log('This should open the note');
     // console.log(note);
   }

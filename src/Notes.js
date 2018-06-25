@@ -67,7 +67,7 @@ class Notes extends Component {
   }
 
 
-  openNote = (id) => {    
+  openNote(id, noteContent) {    
     console.log("it should open the content now");
 
     let notes = this.state.notes;
@@ -77,7 +77,6 @@ class Notes extends Component {
 
     let index = notes.findIndex(note => note.id === id);    
     let note = notes[index];
-
 
 
     this.setState({ 
@@ -107,7 +106,7 @@ class Notes extends Component {
     } else {
       return (
         <div className="notes-block">
-          {this.state.show ? <AddNote addNote = {this.handleAddNote.bind(this)} show = {this.hideForm.bind(this)} /> : <Notelist notes = {this.state.notes}  noteTitle = {this.state.thisNote.noteTitle} noteDate={this.state.thisNote.noteDate} showForm={this.showForm.bind(this)} openNote={this.openNote.bind(this)}/>}
+          {this.state.show ? <AddNote addNote = {this.handleAddNote.bind(this)} show = {this.hideForm.bind(this)} /> : <Notelist notes = {this.state.notes}  noteTitle = {this.state.thisNote.noteTitle} noteDate={this.state.thisNote.noteDate} showForm={this.showForm.bind(this)} NoteContent={this.NetContent} openNote={this.openNote.bind(this)}/>}
         </div>
       );    
     }

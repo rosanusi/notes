@@ -20,16 +20,13 @@ class Notelist extends Component {
     //     console.log('This should open the note');
     // }
 
-    openNote = (id) => {    
+    openNote(id) {    
         let { show } = this.state;
         this.setState({ show: !show });
 
         this.props.openNote(id);
-        
-
 
     }
-
 
     render() {
 
@@ -47,15 +44,19 @@ class Notelist extends Component {
 
             return (
                 <div className="note-page">
-                    <input type="text" ref="noteTitle" defaultValue={this.props.noteDate} />
-                    <textarea ref="noteContent" defaultValue={this.props.noteTitle}></textarea>
+                    <form>
+                        <input type="text" className="note-title" ref="noteTitle" placeholder="Untitled Note" defaultValue={this.props.noteTitle} />
+                        <textarea className="note-content" ref="noteContent" defaultValue={this.props.noteTitle}></textarea>
+                    </form>
                 </div>              
             );    
         } else {
             return(
                 <div className="note-list">
                     <h5 className="title">Notes</h5>
-                    <ul className="notelist-block">{NoteItems}</ul>
+                    <ul className="notelist-block">
+                        {NoteItems}
+                    </ul>
                     <button type="button" className="add-note-btn" onClick={this.showForm.bind(this)}><span className="icon">+</span> Add new note</button>    
                 </div>
             );
