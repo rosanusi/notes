@@ -77,38 +77,17 @@ class Notes extends Component {
 
   autoSaveNote(noteUpdate) { 
 
-    // let updateForm = e.target;
-    
     let id = this.state.thisNote.noteId;
     let index = notes.findIndex(note => note.id === id);    
 
-
-
-    this.setState({
-      thisNote: {
-        noteId: this.state.thisNote.noteId, 
-        noteTitle : noteUpdate.title,
-        noteContent : noteUpdate.note,
-        noteDate: noteUpdate.date
-      }
-    });
-
-    console.log(noteUpdate);
-    console.log(this.state.notes[index]);
-
     const newCopyofNotes = Array.from(this.state.notes);
-    newCopyofNotes[index] = noteUpdate;
-
-
+    newCopyofNotes[index].title = noteUpdate.title;
+    newCopyofNotes[index].note = noteUpdate.note;
     this.setState({ notes : newCopyofNotes});
-
-
-
-    console.log(this.state.notes);
-    
     this.saveNotes();
-    console.log("we got here");
-
+    
+    console.log("Saved");
+    console.log(this.state.notes);
   }
 
 
