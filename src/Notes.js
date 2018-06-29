@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import Moment from 'react-moment';
 // import 'moment-timezone';
 import Notelist from "./components/Notelist";
-import AddNote from "./components/AddNote";
+// import AddNote from "./components/AddNote";
 import "./css/reset.css";
 import "./css/style.css";
 
@@ -38,6 +38,25 @@ class Notes extends Component {
     this.saveNotes();
 
     console.log(newNote);
+
+    let id = newNote.id;
+    let index = notes.findIndex(note => note.id === id);    
+    let note = notes[index];
+
+    this.setState({ 
+
+      thisNote: {
+        noteId: note.id, 
+        noteTitle: note.title, 
+        noteContent: note.note,
+        noteDate: note.date 
+      }
+    });
+
+    
+
+
+
   }
 
 
@@ -123,13 +142,6 @@ class Notes extends Component {
     //     <h1>This should be the start screen</h1>
     //   );
     // } else {
-      if(this.state.show ) {
-        return (
-          <div className="notes-block">
-            <AddNote  show = {this.hideForm.bind(this)} />
-          </div>
-        );
-      } else {
         return (
           <div className="notes-block">
             <Notelist notes ={this.state.notes} 
@@ -141,12 +153,12 @@ class Notes extends Component {
                       showForm={this.showForm.bind(this)} 
                       addNote = {this.handleAddNote.bind(this)}
                       openNote={this.openNote.bind(this)} 
+                      show = {this.hideForm.bind(this)}
                       deleteNote={this.deleteNote.bind(this)} 
                       autoSaveNote={this.autoSaveNote.bind(this)}
             />
           </div>
         );
-      }
     // }
     
   }

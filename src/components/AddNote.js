@@ -52,7 +52,7 @@ class AddNote extends Component {
 
     return (
       <div className="note-form">
-        <form onChange={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
             <input type="text" className="note-title" ref="title" placeholder="Untitled Note" />
             <textarea className="note-area" ref="note" placeholder="start typing here..."></textarea>
             <button type="submit">Submit</button>

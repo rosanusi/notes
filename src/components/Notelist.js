@@ -14,7 +14,7 @@ class Notelist extends Component {
         }
     }
 
-    addNewNote(e){
+    addNewNote(e, id){
         console.log("This will add new note to the list");
 
         this.setState({newNote: {
@@ -24,7 +24,10 @@ class Notelist extends Component {
             date: Date.now()
         }}, function(){
             this.props.addNote(this.state.newNote);
-            // this.props.show(this.state.show);
+            
+            let { show } = this.state;
+            this.setState({ show: !show });
+            console.log("the form should open here right>");
         });  
         
         // console.log(this.state.newNote);
@@ -79,7 +82,7 @@ class Notelist extends Component {
                     <ul className="notelist-block">
                         {NoteItems}
                     </ul>
-                    <button type="button" className="add-note-btn" onClick={this.addNewNote.bind(this)}><span>+</span> Add new note</button>    
+                    <button type="button" className="add-note-btn" onClick={((e) => this.addNewNote(e, this))}><span>+</span> Add new note</button>    
                 </div>
             );
         }
