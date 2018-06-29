@@ -1,24 +1,48 @@
+@font-face {
+    font-family: 'MaisonNeue-Book';
+    src: url('../fonts/maisonneuebook.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/maisonneuebook.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/maisonneuebook.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/maisonneuebook.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/maisonneuebook.svg#cfe9c4d435b13936a17ea5090528f1ab') format('svg'); /* Legacy iOS */
+         
+    font-style:   normal;
+    font-weight:  400;
+  }
+  
+  @font-face {
+    font-family: 'MaisonNeue-Mono';
+    src: url('../fonts/maisonneuemono.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/maisonneuemono.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/maisonneuemono.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/maisonneuemono.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/maisonneuemono.svg#af2fa94b953e46dc77e59983b9e9c303') format('svg'); /* Legacy iOS */
+         
+    font-style:   normal;
+    font-weight:  400;
+  }
+    
+html {
+    -webkit-font-smoothing: antialiased;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "MaisonNeue-Book", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 16px;
     line-height: 1.5;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: #ccc;
-    -webkit-font-smoothing: antialiased;
+    color: #ccc
 }
 ::-moz-placeholder { /* Firefox 19+ */
-    color: #ccc;
-    -webkit-font-smoothing: antialiased;
+    color: #ccc
 }
 :-ms-input-placeholder { /* IE 10+ */
-    color: #ccc;
-    -webkit-font-smoothing: antialiased;
+    color: #ccc
 }
 :-moz-placeholder { /* Firefox 18- */
-    color: #ccc;
-    -webkit-font-smoothing: antialiased;
+    color: #ccc
 }
 
 .notes-wrap {
@@ -33,31 +57,26 @@ body {
 .note-list {
 
     .title {
-        color: #333333;
+        color: rgb(109, 109, 110);
         font-size: 14px;
-        font-weight: 600;
-        -webkit-font-smoothing: antialiased;
+        // font-weight: 600;
         margin-bottom: 20px;
     }
 
     .notelist-block {
         list-style: none;
-        -webkit-font-smoothing: antialiased;
         margin-bottom: 12px;
 
         .note-card {
-            color: #333333;
-            font-size: 14px;
             padding: 12px 0;
             border-bottom: 1px solid #F5F5F5;
             cursor: pointer;
+            position: relative;
             
-            &:first-child {
-                padding-top: 0;
-            }
-
             .note-title {
                 display: inline-block;
+                font-size: 14px;
+                color: #333333;
             }
 
             .note-date {
@@ -66,29 +85,79 @@ body {
                 color: #999;
                 margin-left: 8px;
             }
+
+            .icon {
+                opacity: 0;
+            }
+
+            &:hover {
+                border-bottom: 1px solid rgba(19, 111, 251, .2);
+
+                .icon {
+                    opacity: 1;
+                }
+
+                .note-title {
+                    color: rgb(19, 111, 251);
+                }
+            }
+
+
         }
     }
 
     .add-note-btn {
+        font-family: "MaisonNeue-Book", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         padding: 0;
         line-height: 1;
         border: none;
         font-size: 14px;
         color: #B3B3B3;
         font-weight: 400;
-        -webkit-font-smoothing: antialiased;
         cursor: pointer;
 
         &:focus, &:hover {
             outline: none;
-            color: RGB(19, 111, 251);
-        }
-
-        .icon {
-            font-size: 18px;
+            color: rgb(19, 111, 251);
         }
     }
 }
+
+
+.icon {
+    position: absolute;
+    font-size: 18px;
+    top:    10px;
+    right: 0;
+    border: 1px solid #F5F5F5;
+    border-radius: 4px;
+    padding: 0 8px; 
+
+    .symbol {
+        font-size: 24px;
+        line-height: 0;
+        display: inline-block;
+        vertical-align: 0;
+        font-weight: 200;
+        color: #666;
+    }
+
+
+    .copy {
+        display: inline-block;
+        vertical-align: 0;
+        line-height: 0;
+        font-size: 12px;
+        color: #666;
+    }
+
+
+
+
+}
+
+
+
 
 .note-form {
     margin-top: 40px;
@@ -100,9 +169,10 @@ body {
         position: relative;
         border: none;
         // color: #D4D4D4;
-        font-size: 16px;
+        font-family: "MaisonNeue-Mono", monospace;
+        color: #333;
+        font-size: 14px;
         padding-bottom: 8px;
-        -webkit-font-smoothing: antialiased;
 
         &:hover, &:focus {
             outline: none;
@@ -110,14 +180,14 @@ body {
     }
 
     .note-area {
+        font-family: "MaisonNeue-Mono", monospace;
         margin-top: 20px;
         width: 100%;
         min-height: 400px;
         border: none;
-        font-size: 16px;
-        color: #333;
+        font-size: 14px;
+        color: rgb(109, 109, 110);
         line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
 
         &:hover, &:focus {
             outline: none;
@@ -125,10 +195,6 @@ body {
     }
 
 }
-
-
-
-
 
 
 .note-page {
@@ -141,10 +207,11 @@ body {
         position: relative;
         border: none;
         color: #333;
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 14px;
+        // font-weight: 700;
         padding-bottom: 8px;
-        -webkit-font-smoothing: antialiased;
+        font-family: "MaisonNeue-Mono", monospace;
+
 
         &:hover, &:focus {
             outline: none;
@@ -152,14 +219,15 @@ body {
     }
 
     .note-content {
+        font-family: "MaisonNeue-Mono", monospace;
         margin-top: 20px;
         width: 100%;
         min-height: 400px;
         border: none;
-        font-size: 16px;
-        color: #333;
+        font-size: 14px;
         line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
+        color: rgb(109, 109, 110);
+        line-height: 1.5;
 
         &:hover, &:focus {
             outline: none;

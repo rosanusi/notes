@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import Moment from 'react-moment';
+// import 'moment-timezone';
 import Notelist from "./components/Notelist";
 import AddNote from "./components/AddNote";
 import "./css/reset.css";
@@ -29,13 +31,40 @@ class Notes extends Component {
 
 
 
-  handleAddNote(note) {
-    console.log(note);    
+  handleAddNote(newNote) {    
     let notes = this.state.notes;
-    notes.push(note);
+    notes.push(newNote);
     this.setState({notes:notes});
     this.saveNotes();
+
+    console.log(newNote);
   }
+
+
+  openNote(e, id) { 
+    
+    
+    if (!e.target.closest('.note-card')) 
+      return;
+
+      console.log(e.target);
+
+    let notes = this.state.notes;
+
+    let index = notes.findIndex(note => note.id === id);    
+    let note = notes[index];
+
+    this.setState({ 
+
+      thisNote: {
+        noteId: note.id, 
+        noteTitle: note.title, 
+        noteContent: note.note,
+        noteDate: note.date 
+      }
+    });
+  }
+
 
   showForm = () => {    
     let { show } = this.state;
@@ -51,28 +80,17 @@ class Notes extends Component {
 
   }
 
-
-  openNote(id) {    
-    console.log("it should open the content now");
+  deleteNote(e, id){ 
+    console.log("Deleted a note now");
 
     let notes = this.state.notes;
+    let index = notes.findIndex(note => note.id === id);
+    notes.splice(index, 1);
+    this.setState({notes:notes});
+    this.saveNotes();
 
-    // console.log(notes);
-    // console.log(id);
+    e.stopPropagation()
 
-    let index = notes.findIndex(note => note.id === id);    
-    let note = notes[index];
-
-
-    this.setState({ 
-
-      thisNote: {
-        noteId: note.id, 
-        noteTitle: note.title, 
-        noteContent: note.note,
-        noteDate: note.date 
-      }
-    });
   }
 
   autoSaveNote(noteUpdate) { 
@@ -83,9 +101,10 @@ class Notes extends Component {
     const newCopyofNotes = Array.from(this.state.notes);
     newCopyofNotes[index].title = noteUpdate.title;
     newCopyofNotes[index].note = noteUpdate.note;
+    newCopyofNotes[index].date = noteUpdate.date;
     this.setState({ notes : newCopyofNotes});
     this.saveNotes();
-    
+
     console.log("Saved");
     console.log(this.state.notes);
   }
@@ -107,7 +126,7 @@ class Notes extends Component {
       if(this.state.show ) {
         return (
           <div className="notes-block">
-            <AddNote addNote = {this.handleAddNote.bind(this)} show = {this.hideForm.bind(this)} />
+            <AddNote  show = {this.hideForm.bind(this)} />
           </div>
         );
       } else {
@@ -120,7 +139,9 @@ class Notes extends Component {
                       noteTitle ={this.state.thisNote.noteTitle} 
                       noteContent={this.state.thisNote.noteContent} 
                       showForm={this.showForm.bind(this)} 
+                      addNote = {this.handleAddNote.bind(this)}
                       openNote={this.openNote.bind(this)} 
+                      deleteNote={this.deleteNote.bind(this)} 
                       autoSaveNote={this.autoSaveNote.bind(this)}
             />
           </div>
