@@ -14,9 +14,9 @@ class Notelist extends Component {
         }
     }
 
-    addNewNote(e, id){
-        console.log("This will add new note to the list");
 
+
+    addNewNote = (e) => {
         this.setState({newNote: {
             id: uuid.v4(),
             title: "Untitled Note",
@@ -27,13 +27,8 @@ class Notelist extends Component {
             
             let { show } = this.state;
             this.setState({ show: !show });
-            console.log("the form should open here right>");
         });  
-        
-        // console.log(this.state.newNote);
-        
 
-    //     this.props.showForm();
     }
 
     openNote(e, id) {    
@@ -51,6 +46,16 @@ class Notelist extends Component {
         this.props.autoSaveNote(e);
     }
 
+    escapeKeyPressed(e) {
+        if (e.keyCode === 27) {
+
+            let { show } = this.state;
+            this.setState({ show: !show });
+        }
+    }
+
+
+
     render() {
 
         let NoteItems;
@@ -67,11 +72,12 @@ class Notelist extends Component {
         if(this.state.show){
             return (
                 <div className="note-page">
-                    <Note   autoSaveNote={this.autoSaveNote.bind(this)} 
+                    <Note   autoSaveNote={this.autoSaveNote.bind(this)}
+                            escapeKeyPressed={this.escapeKeyPressed.bind(this)} 
                             noteId ={this.props.noteId} 
                             noteTitle ={this.props.noteTitle} 
                             noteContent={this.props.noteContent} 
-                            noteDate={this.props.noteDate} 
+                            noteDate={this.props.noteDate}
                     />
                 </div>              
             );    

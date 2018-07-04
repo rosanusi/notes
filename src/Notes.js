@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import Moment from 'react-moment';
-// import 'moment-timezone';
 import Notelist from "./components/Notelist";
-// import AddNote from "./components/AddNote";
 import "./css/reset.css";
 import "./css/style.css";
 
@@ -19,7 +16,7 @@ class Notes extends Component {
         show: false
     }
   }
-
+  
   componentWillMount() {
     if (savednotes == null) {
         notes = [];
@@ -27,17 +24,16 @@ class Notes extends Component {
         notes = JSON.parse(savednotes);
     }
     this.setState({ notes });
-}
+  }
 
 
-
-  handleAddNote(newNote) {    
+  addNote(newNote) {    
     let notes = this.state.notes;
     notes.push(newNote);
     this.setState({notes:notes});
     this.saveNotes();
 
-    console.log(newNote);
+
 
     let id = newNote.id;
     let index = notes.findIndex(note => note.id === id);    
@@ -52,21 +48,11 @@ class Notes extends Component {
         noteDate: note.date 
       }
     });
-
-    
-
-
-
   }
 
-
   openNote(e, id) { 
-    
-    
     if (!e.target.closest('.note-card')) 
       return;
-
-      console.log(e.target);
 
     let notes = this.state.notes;
 
@@ -95,12 +81,10 @@ class Notes extends Component {
     
     let { show } = this.state;
     this.setState({ show: !show });
-    console.log('lets hide this dude');
 
   }
 
   deleteNote(e, id){ 
-    console.log("Deleted a note now");
 
     let notes = this.state.notes;
     let index = notes.findIndex(note => note.id === id);
@@ -123,9 +107,6 @@ class Notes extends Component {
     newCopyofNotes[index].date = noteUpdate.date;
     this.setState({ notes : newCopyofNotes});
     this.saveNotes();
-
-    console.log("Saved");
-    console.log(this.state.notes);
   }
 
 
@@ -151,7 +132,7 @@ class Notes extends Component {
                       noteTitle ={this.state.thisNote.noteTitle} 
                       noteContent={this.state.thisNote.noteContent} 
                       showForm={this.showForm.bind(this)} 
-                      addNote = {this.handleAddNote.bind(this)}
+                      addNote = {this.addNote.bind(this)}
                       openNote={this.openNote.bind(this)} 
                       show = {this.hideForm.bind(this)}
                       deleteNote={this.deleteNote.bind(this)} 

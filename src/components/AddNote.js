@@ -21,32 +21,6 @@ class AddNote extends Component {
 
     }
 
-
-    // handleSubmit(e) {
-    //     e.preventDefault();
-
-    //     if(this.refs.title.value === '' && this.refs.note.value === '') {
-    //         console.log("Nothing is showing here");
-    //     } else {
-
-    //         // let newNoteTitle;
-    //         // if(this.refs.title.value === '') {
-    //         //     newNoteTitle = "Untitled Note";
-    //         // } else {
-    //         //     newNoteTitle = this.refs.title.value;
-    //         // }
-    //         this.setState({newNote: {
-    //             id: uuid.v4(),
-    //             title: "Untitled Note",
-    //             note: "",
-    //             date: Date.now()
-    //         }}, function(){
-    //             this.props.addNote(this.state.newNote);
-    //             this.props.show(this.state.show);
-    //         });     
-    //     }
-    // }
-
     render() {
 
 

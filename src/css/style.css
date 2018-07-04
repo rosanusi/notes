@@ -161,4 +161,9 @@ body {
     .note-page .note-content:hover, .note-page .note-content:focus {
       outline: none; }
 
+.content-bottom .editor-msg {
+  display: inline-block;
+  font-size: 12px;
+  color: #999; }
+
 /*# sourceMappingURL=style.css.map */

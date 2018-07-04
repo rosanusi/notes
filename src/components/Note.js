@@ -4,11 +4,15 @@ class Note extends Component {
 
     constructor(){
         super();
+        
 
         this.state = {
             newNoteUpdate: {}
         }
+
     } 
+
+
 
     autoSaveNote(e) {
 
@@ -19,21 +23,25 @@ class Note extends Component {
             date: Date.now()
         }}, function(){
             this.props.autoSaveNote(this.state.noteUpdate);
-            // this.props.addNote(this.state.newNote);
-            // this.props.show(this.state.show);
         });            
 
     }
 
 
+    escapeKeyPressed(e) {
+        this.props.escapeKeyPressed(e);
+    }
 
 
 
   render() {
     return (
-        <form onChange={this.autoSaveNote.bind(this)}>
+        <form onChange={this.autoSaveNote.bind(this)} onKeyDown={this.escapeKeyPressed.bind(this)}>
             <input type="text" className="note-title" ref="noteTitle" placeholder="Untitled Note" defaultValue={this.props.noteTitle} />
-            <textarea className="note-content" ref="noteContent" defaultValue={this.props.noteContent}></textarea>
+            <textarea className="note-content"  ref="noteContent" defaultValue={this.props.noteContent} autoFocus={true}></textarea>
+            <div className="content-bottom">
+                <span className="editor-msg">The note autosaves. Press escape to go back.</span>
+            </div>
         </form>
     )
   }
