@@ -16,11 +16,14 @@ class Note extends Component {
 
     autoSaveNote(e) {
 
+        let noteContent = this.refs.noteContent.value;
+        let noteTitle = noteContent.substring(0, 30);
+
         this.setState({noteUpdate: {
-            id: this.props.noteId,
-            title: this.refs.noteTitle.value,
-            note: this.refs.noteContent.value,
-            date: Date.now()
+            noteId: this.props.noteId,
+            noteTitle: noteTitle,
+            noteContent: noteContent,
+            noteDate: Date.now()
         }}, function(){
             this.props.autoSaveNote(this.state.noteUpdate);
         });            
@@ -36,9 +39,10 @@ class Note extends Component {
 
   render() {
     return (
-        <form onChange={this.autoSaveNote.bind(this)} onKeyDown={this.escapeKeyPressed.bind(this)}>
-            <input type="text" className="note-title" ref="noteTitle" placeholder="Untitled Note" defaultValue={this.props.noteTitle} />
-            <textarea className="note-content"  ref="noteContent" defaultValue={this.props.noteContent} autoFocus={true}></textarea>
+        <form onKeyDown={this.escapeKeyPressed.bind(this)}>
+            {/* <input type="text" className="note-title" ref="noteTitle" placeholder="Untitled Note" defaultValue={this.props.noteTitle} /> */}
+            <textarea onChange={this.autoSaveNote.bind(this)} className="note-content"  ref="noteContent" defaultValue={this.props.noteContent} autoFocus={true}></textarea>
+            {/* <textarea className="note-content"  ref="noteContent" defaultValue={this.props.noteContent} autoFocus={true}></textarea> */}
             <div className="content-bottom">
                 <span className="editor-msg">The note autosaves. Press escape to go back.</span>
             </div>

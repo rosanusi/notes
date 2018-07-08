@@ -98,13 +98,17 @@ class Notes extends Component {
 
   autoSaveNote(noteUpdate) { 
 
-    let id = this.state.thisNote.noteId;
-    let index = notes.findIndex(note => note.id === id);    
+    this.setState({ thisNote : noteUpdate});
 
-    const newCopyofNotes = Array.from(this.state.notes);
-    newCopyofNotes[index].title = noteUpdate.title;
-    newCopyofNotes[index].note = noteUpdate.note;
-    newCopyofNotes[index].date = noteUpdate.date;
+    let notes = this.state.notes;
+    let id = noteUpdate.noteId;
+    let index = notes.findIndex(note => note.id === id);
+
+    const newCopyofNotes = Array.from(notes);
+    newCopyofNotes[index].title = noteUpdate.noteTitle;
+    newCopyofNotes[index].note = noteUpdate.noteContent;
+    newCopyofNotes[index].date = noteUpdate.noteDate;
+
     this.setState({ notes : newCopyofNotes});
     this.saveNotes();
   }
@@ -129,7 +133,7 @@ class Notes extends Component {
                       thisNote ={this.state.thisNote}  
                       noteId={this.state.thisNote.noteId} 
                       noteDate={this.state.thisNote.noteDate} 
-                      noteTitle ={this.state.thisNote.noteTitle} 
+                      // noteTitle ={this.state.thisNote.noteTitle} 
                       noteContent={this.state.thisNote.noteContent} 
                       showForm={this.showForm.bind(this)} 
                       addNote = {this.addNote.bind(this)}
