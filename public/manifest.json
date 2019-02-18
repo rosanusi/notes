@@ -1,0 +1,22 @@
+{
+    "short_name": "NoteMaker",
+    "name": "NoteMaker Extension",
+    "manifest_version": 2,
+
+    "version": "0.0.0.1",
+    
+    "browser_action": {
+      // "default_popup": "index.html",
+      "default_title": "NoteMaker"
+    },
+
+    "default_locale": "en",
+    "description": "A plain text description",
+    // "icons": {...},
+
+
+    "chrome_url_overrides" : {
+      "newtab" : "index.html"
+    }
+}
+

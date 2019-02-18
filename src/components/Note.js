@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Textarea from 'react-textarea-autosize';
 
 class Note extends Component {
 
@@ -16,7 +17,7 @@ class Note extends Component {
 
     autoSaveNote(e) {
 
-        let noteContent = this.refs.noteContent.value;
+        let noteContent = this.noteContent.value;
         let noteTitle = noteContent.substring(0, 30);
 
         this.setState({noteUpdate: {
@@ -41,7 +42,15 @@ class Note extends Component {
     return (
         <form onKeyDown={this.escapeKeyPressed.bind(this)}>
             {/* <input type="text" className="note-title" ref="noteTitle" placeholder="Untitled Note" defaultValue={this.props.noteTitle} /> */}
-            <textarea onChange={this.autoSaveNote.bind(this)} className="note-content"  ref="noteContent" defaultValue={this.props.noteContent} autoFocus={true}></textarea>
+            <Textarea 
+                onChange={this.autoSaveNote.bind(this)} 
+                className="note-content"  
+                ref="noteContent" 
+                inputRef={noteContent => (this.noteContent = noteContent)}
+                defaultValue={this.props.noteContent} 
+                minRows = {3}
+                autoFocus
+            / >
             {/* <textarea className="note-content"  ref="noteContent" defaultValue={this.props.noteContent} autoFocus={true}></textarea> */}
             <div className="content-bottom">
                 <span className="editor-msg">The note autosaves. Press escape to go back.</span>
