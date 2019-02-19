@@ -30,10 +30,9 @@ class Notes extends Component {
   addNote(newNote) {    
     let notes = this.state.notes;
     notes.push(newNote);
-    this.setState({notes:notes});
+    this.setState({notes});
+
     this.saveNotes();
-
-
 
     let id = newNote.id;
     let index = notes.findIndex(note => note.id === id);    
@@ -48,6 +47,11 @@ class Notes extends Component {
         noteDate: note.date 
       }
     });
+  }
+
+  saveNotes(){
+    let { notes } = this.state;
+    localStorage.setItem("savednotes", JSON.stringify(notes));                
   }
 
   openNote(e, id) { 
@@ -114,13 +118,9 @@ class Notes extends Component {
   }
 
 
-  saveNotes(){
-    let { notes } = this.state;
-    localStorage.setItem("savednotes", JSON.stringify(notes));                
-  }
-
-
   render() {
+
+    console.log(this.state.thisNote);
 
     // if(this.state.notes === undefined || this.state.notes.length === 0){
     //   return (

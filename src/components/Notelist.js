@@ -25,6 +25,7 @@ class Notelist extends Component {
         }}, function(){
             this.props.addNote(this.state.newNote);
             
+            // Display the form immediately
             let { show } = this.state;
             this.setState({ show: !show });
         });  
