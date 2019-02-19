@@ -9,7 +9,7 @@
       "default_title": "NoteMaker"
     },
 
-    "description": "A plain text description",
+    "description": "Dead simple notemaking app",
 
 
     "chrome_url_overrides" : {
