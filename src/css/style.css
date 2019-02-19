@@ -148,7 +148,7 @@ body {
     font-family: "MaisonNeue-Mono", monospace; }
     .note-page .note-title:hover, .note-page .note-title:focus {
       outline: none; }
-  .note-page .note-content {
+  .note-page .note-content, .note-page .public-DraftEditor-content {
     font-family: "MaisonNeue-Mono", monospace;
     margin-top: 20px;
     width: 100%;
@@ -156,8 +156,9 @@ body {
     font-size: 14px;
     line-height: 1.5;
     color: #6d6d6e;
-    line-height: 1.5; }
-    .note-page .note-content:hover, .note-page .note-content:focus {
+    line-height: 1.5;
+    letter-spacing: -0.75px; }
+    .note-page .note-content:hover, .note-page .note-content:focus, .note-page .public-DraftEditor-content:hover, .note-page .public-DraftEditor-content:focus {
       outline: none; }
 
 .content-bottom .editor-msg {

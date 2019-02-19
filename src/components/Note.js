@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Textarea from 'react-textarea-autosize';
 import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
 
 class Note extends Component {
@@ -23,9 +22,8 @@ class Note extends Component {
 
     autoSaveNote(rawContent) {
 
-        // let noteContent = this.noteContent.value;
-        // let noteTitle = noteContent.substring(0, 30);
-        let noteTitle = "working on it";
+        let firstline = rawContent.blocks[0].text
+        let noteTitle = firstline.substring(0,30);
 
         this.setState({noteUpdate: {
             noteId: this.props.noteId,
@@ -68,7 +66,6 @@ class Note extends Component {
     return (
             <form onKeyDown={this.escapeKeyPressed.bind(this)}>
                 <Editor 
-                    className="note-content"
                     ref={this.noteContent}
                     editorState={this.state.editorState}
                     handleKeyCommand={this.handleKeyCommand}

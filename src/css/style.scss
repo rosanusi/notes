@@ -218,7 +218,7 @@ body {
         }
     }
 
-    .note-content {
+    .note-content, .public-DraftEditor-content {
         font-family: "MaisonNeue-Mono", monospace;
         margin-top: 20px;
         width: 100%;
@@ -228,6 +228,7 @@ body {
         line-height: 1.5;
         color: rgb(109, 109, 110);
         line-height: 1.5;
+        letter-spacing : -0.75px;
 
         &:hover, &:focus {
             outline: none;
