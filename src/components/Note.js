@@ -18,7 +18,11 @@ class Note extends Component {
             this.state.editorState = EditorState.createWithContent(convertFromRaw(rawContent));
         }
 
-    } 
+    }
+
+    componentDidMount(){
+        this.refs.noteContent.focus();
+    }
 
     autoSaveNote(rawContent) {
 
@@ -66,7 +70,7 @@ class Note extends Component {
     return (
             <form onKeyDown={this.escapeKeyPressed.bind(this)}>
                 <Editor 
-                    ref={this.noteContent}
+                    ref="noteContent"
                     editorState={this.state.editorState}
                     handleKeyCommand={this.handleKeyCommand}
                     onChange={this.onChange}
